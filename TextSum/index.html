@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text or Voice Input</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="wave"></div>
+    
+    <div class="container">
+        <div class="chat-box" id="voiceText"></div>
+        <div id="finalTextContainers" class="final-text-containers" style="display:none;"></div> <!-- Hidden initially -->
+        
+        <div id="new-final-text-container" class="new-final-text-container" style="display:none;"></div> <!-- Hidden initially -->
+        <div id="kan-text-container" class="kan-text-container" style="display:none;"></div> <!-- Hidden initially -->
+        <div class="input-area">
+            <textarea id="textInput" placeholder="Type your text here..."></textarea>
+            <button id="recordButton">🎤</button>
+        </div>
+        <button id="enterConditionButton">Enter Condition</button>
+        <button id="stopButton" disabled>Stop Recording</button>
+        <button id="simplifyButton">Simplify</button>
+    </div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <script src="scripts.js"></script>
+</body>
+</html>
