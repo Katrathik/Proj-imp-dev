@@ -54,25 +54,36 @@ const Manager = () => {
   };
 
   const savePassword = async () => {
+    if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
+      if (form.id) {
+        // If an ID exists, update the existing record
+        setPasswordArray(passwordArray.map(item => 
+          item.id === form.id ? form : item
+        ));
+        
+        // Send an update request to the backend
+        await fetch("http://localhost:3000", {
+          method: "PUT", // Use PUT or PATCH for updates
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(form)
+        });
+      } else {
+        // If no ID, it's a new entry
+        const newPassword = { ...form, id: uuidv4() };
+        setPasswordArray([...passwordArray, newPassword]);
+        
+        await fetch("http://localhost:3000", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(newPassword)
+        });
+      }
   
-    if(form.site.length >3 && form.username.length>3 && form.password.length>3){
-
-      // If any such id exists in the db,delete it
- 
-        await fetch("http://localhost:3000",{method: "DELETE", headers :{
-          "Content-type":"application/json"},
-        body: JSON.stringify({id: form.id})})
-
-
-
-      setPasswordArray([...passwordArray, {...form, id:uuidv4()}]);
-      await fetch("http://localhost:3000",{method: "POST", headers :{
-        "Content-type":"application/json"},
-      body: JSON.stringify({...form , id: uuidv4()})})
-      // here password is passed to db to be saved in JSON.stringify()
-
-
-      setform({ site: "", username: "", password: "" })
+      setform({ site: "", username: "", password: "" });
       toast("Password Saved!", {
         position: "top-right",
         autoClose: 5000,
@@ -83,12 +94,11 @@ const Manager = () => {
         progress: undefined,
         theme: "dark",
       });
+    } else {
+      toast("Error, password not saved!");
     }
-    else{
-      toast("Error, password not saved!")
-    }
-
   };
+  
 
   const deletePassword = async (id) => {
     
@@ -119,16 +129,13 @@ const Manager = () => {
 
 
   const editPassword = (id) => {
-    console.log("Editing password with id ",id)
-
-    // delete the elemnt of the id for editing
-    // the below line sets the id of the form to be deleted for editing
-    // then in savePassword we first delete it and enter an updated value
-    setform({...passwordArray.filter(i=>i.id === id)[0], id:id})
-    setPasswordArray(passwordArray.filter(item=> item.id != id))
-
-
+    console.log("Editing password with id", id);
+  
+    // Set form with the selected record for editing, but do not delete it yet
+    const selectedPassword = passwordArray.find(i => i.id === id);
+    setform(selectedPassword);
   };
+  
 
   const handleChange = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
