@@ -8,7 +8,7 @@ CORS(app)  # Enable CORS for all routes
 @app.route('/run_script', methods=['POST'])
 def run_script():
     # Path to your Python script
-    script_path = 'C:\Users\KARTHIK K H\Downloads\uplo_code\cohere_try.py'
+    script_path = r'C:\\Users\\Lenovo\\Downloads'
     
     try:
         # Run the script

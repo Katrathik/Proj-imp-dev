@@ -3,14 +3,14 @@ import { getAuth} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.
 import {getFirestore,getDocs,collection} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "your api key here",
-    authDomain: "your api domain here",
-    projectId: "your projectId",
-    storageBucket: "your storage bucket here",
-    messagingSenderId: "your messaging sender id here",
-    appId: "your app id here",
-    measurementId: "your measurement id here"
-  };
+  apiKey: "your api key",
+  authDomain: "your auth domain",
+  projectId: "your project id",
+  storageBucket: "your storage bucket id",
+  messagingSenderId: "your messagingSenderId",
+  appId: "your appId",
+  measurementId: "your measurement id"
+};
 
 
 const app = initializeApp(firebaseConfig);

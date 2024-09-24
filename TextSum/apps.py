@@ -3,7 +3,7 @@ import cohere
 
 app = FastAPI()
 
-co = cohere.Client(api_key="LZRnRv5n01FstPlegclWMSQjnN40iTGSNZboecQQ")
+co = cohere.Client(api_key="Your api key")
 
 # Allow CORS for local development
 from fastapi.middleware.cors import CORSMiddleware
