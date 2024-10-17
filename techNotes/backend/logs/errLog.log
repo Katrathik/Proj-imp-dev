@@ -1,0 +1,70 @@
+20241011	21:46:33	9f431374-26ef-4e4e-a11d-260738e2fdf8	Error	Not allowed by CORS	OPTIONS	/	https://www.google.com
+20241011	21:46:33	1553a36b-1091-484d-8f91-645ac4f5cf4e	Error	Not allowed by CORS	GET	/	https://www.google.com
+20241012	11:44:32	6ca116c9-95d9-4a49-a37c-81a05379b18e	SyntaxError	Unexpected token } in JSON at position 54	POST	/users	undefined
+20241012	12:00:14	0f6381b9-1bfa-48c8-bc16-fae36e76906f	SyntaxError	Unexpected string in JSON at position 72	POST	/users	undefined
+20241012	12:00:21	3b530499-812a-4866-be5e-189c2c023b6d	SyntaxError	Unexpected token } in JSON at position 125	POST	/users	undefined
+20241012	12:00:44	2a7cc786-e658-4ace-9586-767cbd30f688	SyntaxError	Unexpected token } in JSON at position 97	POST	/users	undefined
+20241015	20:18:11	8d6ebcf4-590c-4a1f-9cc8-45c44e1264bc	SyntaxError	Unexpected token } in JSON at position 55	GET	/auth	undefined
+20241015	20:20:30	77fffd1b-7eb2-47d1-a22a-f676d95d644d	Error	Cannot set headers after they are sent to the client	GET	/users	undefined
+20241015	20:20:40	f465c01f-2b47-4241-8bb4-86397e813b96	Error	Cannot set headers after they are sent to the client	GET	/users	undefined
+20241015	20:20:54	8b169944-04ef-40f6-92b1-ea7544c89137	Error	Cannot set headers after they are sent to the client	GET	/users	undefined
+20241015	20:20:58	18543868-e9e5-4ba5-8c28-152c0c2acb14	Error	Cannot set headers after they are sent to the client	GET	/users	undefined
+20241015	20:26:08	52854bc2-34f2-45da-b29b-1258f632bacb	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241015	20:26:08	ccdc4e7a-f53c-4901-a02b-59c48e2de1f9	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241015	20:26:40	2de97151-7b73-4de4-aa81-a9b3fe794051	Error	Cannot set headers after they are sent to the client	POST	/users	http://localhost:5173
+20241015	20:26:40	c22e13ae-e3f3-4978-9fb7-69cb45dd02f1	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241015	20:26:52	18e71af8-6e02-43ed-be47-fec2d279f49c	Error	Cannot set headers after they are sent to the client	POST	/users	http://localhost:5173
+20241015	20:26:52	90bd24c5-4859-4920-8a19-94cac08c0734	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241015	20:27:01	b5e12b37-ac10-4734-b59a-76f30d5254d3	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241015	20:27:01	6e7caf0b-9b4d-43a3-a7cf-1d5e5de18e63	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241015	20:34:03	bf1480e9-b5d4-447c-a218-dc35f24c57fa	SyntaxError	Unexpected token } in JSON at position 54	POST	/auth	undefined
+20241016	09:02:25	f6f147c8-4690-4e12-b44e-3aebd0095fe3	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:02:25	a2ad04f8-e9fb-49ef-b844-dd371e47f7d5	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241016	09:02:33	e4c7c1d9-8ce2-4ae0-82be-892d41c8701f	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241016	09:02:38	16825a6b-7541-43d7-935f-ee49932f0d11	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:02:40	0a501d98-c139-4deb-9f53-e90df3963d51	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241016	09:03:09	4a63a63c-61c7-4e61-9d29-4c99c5d47be8	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:06:02	07e4cfa9-0653-4f46-85c0-3423da23148b	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:06:18	f17da68a-403f-4691-8091-06b79b7ff522	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:06:34	8e249647-f045-4bd2-9e0d-a254c1eb4601	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:06:50	f7df9d8a-e333-4dd7-b414-cfe8e564505d	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:07:32	b3b9b698-ad7f-4788-9abf-46590b443fcc	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:07:32	238c04e8-ff5f-467b-acdc-102b6688b6d3	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241016	09:07:36	f1c5eda2-9133-43da-9ddc-98c481cc5b8a	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	09:07:43	1d49a39e-bfa8-430b-96c8-de5d1e8fda69	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241016	20:21:05	9bc58228-74a6-4f8d-809c-d8490f59d7a9	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241016	20:27:02	c37062b2-a369-495b-a1e1-5e20bd240533	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:03:02	79cdf8c9-c93d-4a95-8c01-948e3b1d3565	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:03:02	7a676172-1578-4748-9731-7a141c88408a	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:03:06	e205c52c-ea1d-4b1a-89e6-0d435a1d9b57	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:03:06	9a24b9c7-5049-4633-9a54-0800c393ab1e	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:04:42	7af4ff64-1287-4513-a0db-b7229a2653ae	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:04:42	1557ccc6-f3d1-44d8-be31-b22cb385f74c	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:05:58	2f7b85a3-9ca9-4c30-9bdf-849eef6fb107	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:05:58	34f95eb7-73be-46b3-9455-75f0fa3a0de7	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:06:08	1896d046-2a11-4007-bcfb-b8c6fbc42397	Error	Cannot set headers after they are sent to the client	GET	/notes	undefined
+20241017	00:08:47	0f2b07fc-1ad8-4126-95d7-b2a17db61c1f	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:08:47	cf5fdd70-f479-41b3-b838-5a1096de7509	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:08:54	36101a14-fcdf-453f-9a90-222ebe1dd9c8	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:08:54	9f298e61-84ac-4fb4-b94a-13feca56e544	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:37:57	5ef4a25e-9b23-4947-804c-705c76b7adae	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:37:57	3dd3942b-f4ab-48a2-aae6-fcf8b801d3e4	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:38:38	5c0b50ca-227d-4b30-8317-4af0a371a9f9	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:38:38	277c3df5-47db-4510-ab13-f93c12fee046	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:46:40	9a1ab9eb-e3a1-402f-8cd0-578e31360bda	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:46:40	cb3d38da-bd7d-4177-915b-997bd2586e3c	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:46:58	180c0e03-3421-461a-9835-f0cf8807fae7	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:46:58	3729e30a-4c0b-4913-89c6-63a7dc22599d	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:46:59	98a79525-e4e5-4297-9ed1-6a4563c42c83	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:46:59	ecf5ee12-6310-42c8-927c-830a6c671892	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:47:50	dd572484-980f-43c7-9eb3-77c6554b01bc	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:47:50	15936466-71da-4a71-941d-db9a81424cf9	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:49:02	33631109-e448-4df1-891b-884a6e743e22	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:49:02	9b00e26c-3f40-47e9-8d63-8361fb19ef22	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:49:26	81a3e2a9-44fe-473d-8af9-260eda74618d	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:49:26	5875f35f-c66b-460b-9dab-2d96ee0a16b5	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	00:49:39	d48a0c1e-d164-43c0-8382-732f7b66ee9c	Error	Cannot set headers after they are sent to the client	GET	/users	undefined
+20241017	00:52:07	e97ceefb-ea9a-4aab-a295-d11e58aa3321	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	00:52:07	cafb0fee-0e4a-45c2-bc6f-12266219d9ad	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173
+20241017	08:58:31	8abb361a-856b-44b4-8ec2-72a03760d66f	Error	Cannot set headers after they are sent to the client	GET	/notes	http://localhost:5173
+20241017	08:58:31	92e6c96c-d470-41c4-aaf0-e384cbd38af2	Error	Cannot set headers after they are sent to the client	GET	/users	http://localhost:5173

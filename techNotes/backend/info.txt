@@ -1,0 +1,336 @@
+A splash screen is the first graphical notification you receive when you visit any app. It can even appear as an introductory screen of an application. It also signifies that you have to wait for a few seconds before landing on the actual screen of the application.
+
+chapter 1:
+building a rest api that handles home page and not found page(but not crud here actually)
+
+This code defines an error handling middleware for an Express.js application. Let's break it down step by step:
+
+### Components:
+
+1. **Importing `logEvents`:**
+   ```javascript
+   const { logEvents } = require('./logger')
+   ```
+   This imports a logging function, presumably to log error events to a file.
+
+2. **Error Handler Function:**
+   ```javascript
+   const errorHandler = (err, req, res, next) => {
+   ```
+   This defines the error handling middleware. It takes four parameters:
+   - `err`: The error object.
+   - `req`: The request object.
+   - `res`: The response object.
+   - `next`: The next middleware function (not used here).
+
+3. **Logging the Error:**
+   ```javascript
+   logEvents(`${err.name}\t${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`, 'errLog.log')
+   ```
+   This line logs important information about the error:
+   - The error name (`err.name`).
+   - The error message (`err.message`).
+   - The HTTP method used for the request (`req.method`).
+   - The request URL (`req.url`).
+   - The origin of the request (`req.headers.origin`).
+   
+   This information is written to a log file named `errLog.log`.
+
+4. **Logging the Error Stack:**
+   ```javascript
+   console.log(err.stack)
+   ```
+   This outputs the error stack trace to the console, which provides detailed information about where the error occurred in the code.
+
+5. **Setting the Response Status:**
+   ```javascript
+   const status = res.statusCode ? res.statusCode : 500 // internal server error
+   ```
+   This checks if the response object already has a status code set. If it does, it uses that code; otherwise, it defaults to `500`, which indicates an internal server error.
+
+6. **Sending the Response:**
+   ```javascript
+   res.status(status)
+   res.json({ message: err.message })
+   ```
+   Finally, it sends a JSON response back to the client with the error message and the appropriate status code.
+
+### Exporting the Middleware:
+```javascript
+module.exports = errorHandler
+```
+This makes the `errorHandler` function available to be used in other parts of the application, typically by importing it in the main server file and using it with `app.use()`.
+
+### Summary:
+This error handler is designed to catch and log errors that occur during the handling of requests in an Express.js application. It provides useful information for debugging while also sending a user-friendly error message back to the client.
+
+In Mongoose, the `lean()` method is used to retrieve documents from the database as plain JavaScript objects instead of Mongoose Document instances. This can improve performance and reduce memory usage, especially when you don't need the additional functionality that Mongoose provides (like getters, setters, and instance methods).
+
+When you call `lean()`, Mongoose skips the creation of Mongoose Document objects, resulting in a simpler and faster response. In your example, using `lean()` means that the data returned by `User.find()` will be plain objects, which is ideal for sending JSON responses to the client without any Mongoose overhead. 
+
+Additionally, using `lean()` ensures that the documents returned are free of any additional Mongoose metadata, making them lighter and easier to manipulate.
+
+
+other errors are auto handled by asyncHandler which are not specifically handled in controllers
+
+so if we have aldready created a user with a name and try to update the name to a name aldready in db, then we get duplicate username 
+
+# info.txt
+
+## updateUser Function
+
+The `updateUser` function is an asynchronous handler that updates an existing user in the database. It takes in the user's ID, username, roles, active status, and password from the request body. The function first checks if all required fields are present and if the roles is an array with at least one element. It then finds the user by ID and checks if the username is already taken by another user. If the user is found and the username is available, it updates the user's details and hashes the password if provided. Finally, it saves the updated user and returns a success message with the updated username.
+
+## deleteUser Function
+
+The `deleteUser` function is an asynchronous handler that deletes a user from the database. It takes in the user's ID from the request body and checks if it is present. If the ID is present, it finds the user by ID and checks if the user has any assigned notes. If the user has no notes, it deletes the user and returns a success message with the deleted username and ID. If the user has notes, it returns an error message indicating that the user cannot be deleted due to assigned notes. If the user is not found, it returns an error message indicating that the user was not found.
+
+## Duplicate Username Check
+
+The function checks if a duplicate user with the same username exists in the database, and if so, returns a 409 Conflict error response with a JSON message indicating that the username is a duplicate.
+
+## Lean() and Save()
+
+When `lean()` is used, `save()` cannot be used. 
+
+Note: `lean()` returns a plain JavaScript object, which does not have the `save()` method.
+
+## updateNote Function
+
+The `updateNote` function is an asynchronous handler that updates an existing note in the database. It takes in the note's ID, user, title, text, and completed status from the request body, and checks if all required fields are present. If the fields are valid, it finds the note by ID and checks if it exists. If the note exists, it updates the note's details and saves the changes. If the note does not exist, it returns a 400 error response with a message indicating that the note was not found. Additionally, it checks for duplicate note titles and returns a 409 error response if a duplicate title is found.
+
+## Map() Function
+
+The `map()` function is used in the `getAllNotes` function to transform an array of notes into an array of notes with their corresponding usernames.
+
+## Promise.all()
+
+`Promise.all()` is used to wait for all the promises returned by the `map()` function to resolve. It takes an array of promises as an argument and returns a single promise that resolves when all the promises in the array have resolved. This allows the code to wait for all the notes to be processed and their corresponding usernames to be fetched before returning the response.
+
+
+
+The `map()` function is used in the `getAllNotes` function to transform an array of notes into an array of notes with their corresponding usernames.
+
+Here's the specific code:
+```javascript
+const notesWithUser = await Promise.all(notes.map(async (note) => {
+  const user = await User.findById(note.user).lean().exec()
+  return { ...note, username: user.username }
+}))
+```
+Here's what's happening:
+
+* `notes.map()`: This applies a transformation function to each element of the `notes` array.
+* `async (note) => { ... }`: This is the transformation function, which takes a single note object as an argument.
+* `const user = await User.findById(note.user).lean().exec()`: This finds the user associated with the current note by ID.
+* `return { ...note, username: user.username }`: This returns a new object that combines the original note object with a new `username` property, which is set to the username of the associated user.
+
+The `map()` function returns a new array with the transformed objects, which is then passed to `Promise.all()` to wait for all the promises to resolve.
+
+The result is an array of notes with their corresponding usernames, which is then returned as the response.
+
+
+
+`Promise.all()` is used here to wait for all the promises returned by the `map()` function to resolve.
+
+In the `map()` function, each iteration returns a promise that resolves to a note object with a `username` property. Since `User.findById()` is an asynchronous operation, it returns a promise, and the `map()` function returns an array of promises.
+
+`Promise.all()` takes an array of promises as an argument and returns a single promise that resolves when all the promises in the array have resolved. This allows the code to wait for all the notes to be processed and their corresponding usernames to be fetched before returning the response.
+
+If `Promise.all()` wasn't used, the code would return an array of promises, not an array of notes with usernames. By using `Promise.all()`, the code can ensure that it returns a complete and processed array of notes with usernames.
+
+
+
+Based on the context of the `info.txt` file, here are the two objects:
+
+
+**Using only await:**
+```json
+const user = await User.findById(note.user)
+{
+  "_id": "60d9e9f7f2f2f2f2f2f2f",
+  "username": "johnDoe",
+  "__v": 0,
+  "$__": {
+    "strictMode": true,
+    "selected": {},
+    "shardval": null,
+    "saveError": null,
+    "validationError": null,
+    "adapters": {},
+    "log": {
+      "deprecated": []
+    },
+    "$setCalled": {},
+    "activePaths": {
+      "paths": {
+        "_id": {
+          "instance": "ObjectID",
+          "validators": []
+        },
+        "username": {
+          "instance": "String",
+          "validators": []
+        }
+      },
+      "states": {
+        "ignore": {},
+        "default": {},
+        "init": {},
+        "modify": {},
+        "requires": {}
+      },
+      "stateNames": ["doesNotExist", "maybe", "exists", "modified", "requires"]
+    },
+    "pathsToScopes": {},
+    "cachedRequired": {},
+    "session": null,
+    "$options": {}
+  }
+}
+```
+
+**Using await with exec():**
+```json
+const user = await User.findById(note.user).lean().exec()
+{
+  "_id": "60d9e9f7f2f2f2f2f2f2f",
+  "username": "johnDoe"
+}
+```
+
+In the context of the `info.txt` file, the first object is what would be returned if the `lean()` method was not used, and the second object is what would be returned if the `lean()` method was used.
+
+
+
+
+
+In the code snippet you provided, `exec()` is used in conjunction with `await` in several functions, such as `deleteUser`, `updateUser`, and `createNewUser`. However, as we discussed earlier, `exec()` is not necessary when using `await`.
+
+The reason `exec()` is used in these functions is likely due to the fact that `find()` and other query methods in Mongoose return a Query object, which is a special type of object that allows you to build and execute database queries. When you call `exec()` on a Query object, it executes the query and returns a promise that resolves to the query results.
+
+In the case of `await`, it's not necessary to call `exec()` explicitly, as `await` will automatically execute the query and return the results. However, calling `exec()` explicitly can make the code more readable and explicit, as it clearly indicates that the query is being executed.
+
+It's worth noting that the author of the code may have included `exec()` out of habit or to make the code more consistent with other parts of the application that use callbacks instead of `await`. Ultimately, using `exec()` with `await` is not necessary, but it doesn't harm anything either.
+
+
+
+
+
+In the code snippet you provided, `exec()` is used in conjunction with `await` in several functions, such as `deleteUser`, `updateUser`, and `createNewUser`. However, as we discussed earlier, `exec()` is not necessary when using `await`.
+
+The reason `exec()` is used in these functions is likely due to the fact that `find()` and other query methods in Mongoose return a Query object, which is a special type of object that allows you to build and execute database queries. When you call `exec()` on a Query object, it executes the query and returns a promise that resolves to the query results.
+
+In the case of `await`, it's not necessary to call `exec()` explicitly, as `await` will automatically execute the query and return the results. However, calling `exec()` explicitly can make the code more readable and explicit, as it clearly indicates that the query is being executed.
+
+It's worth noting that the author of the code may have included `exec()` out of habit or to make the code more consistent with other parts of the application that use callbacks instead of `await`. Ultimately, using `exec()` with `await` is not necessary, but it doesn't harm anything either.
+
+
+
+In Mongoose, a Query object is an object that represents a database query. It's a special type of object that allows you to build and execute database queries.
+
+Here's an example:
+```javascript
+const query = User.find({ name: 'John' });
+```
+In this example, `query` is a Query object that represents a query to find all users with the name 'John'.
+
+The Query object has several methods that you can use to modify the query, such as:
+
+* `select()`: specifies the fields to include in the query results
+* `sort()`: specifies the order of the query results
+* `limit()`: specifies the maximum number of results to return
+* `skip()`: specifies the number of results to skip
+* `exec()`: executes the query and returns a promise that resolves to the query results
+
+Here's an example of building a Query object and executing it:
+```javascript
+const query = User.find({ name: 'John' })
+  .select('name email')
+  .sort('name')
+  .limit(10)
+  .skip(5);
+
+const results = await query.exec();
+```
+In this example, the Query object is built by chaining several methods together, and then executed using the `exec()` method. The results of the query are stored in the `results` variable.
+
+
+
+
+
+The `refresh` function in the authController is an async function that handles token refresh. When a user's access token expires, the refresh token can be used to obtain a new access token without requiring the user to re-enter their login credentials. The function takes the refresh token from the request, verifies its validity, and checks if it is still active. If the refresh token is valid, the function generates a new access token using the `jwt.sign` method, which contains the user's username and roles, and returns it in the response. The new access token is then used to authenticate the user for subsequent requests. The refresh token is also updated and returned in the response, allowing the user to obtain another access token when the current one expires.
+
+Sure! Let’s break down the `refresh` function line by line.
+
+```javascript
+const refresh = (req, res) => {
+```
+This line defines a function named `refresh` that takes two parameters: `req` (the request object) and `res` (the response object). This function is typically used as a route handler in an Express.js application.
+
+```javascript
+    const cookies = req.cookies
+```
+Here, the function retrieves the cookies from the request object (`req`). It assumes that the cookie-parser middleware has been used to populate `req.cookies`.
+
+```javascript
+    if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+```
+This line checks if the `jwt` cookie exists. If it does not exist (or is `undefined`), it sends a 401 Unauthorized response with a JSON message. The optional chaining operator (`?.`) is used to prevent errors if `cookies` is `undefined`.
+
+```javascript
+    const refreshToken = cookies.jwt
+```
+If the `jwt` cookie is present, it assigns its value to the variable `refreshToken`. This token is expected to be used for refreshing the access token.
+
+```javascript
+    jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET,
+```
+This part calls the `jwt.verify` method to validate the `refreshToken` using a secret key stored in the environment variable `REFRESH_TOKEN_SECRET`. This checks if the token is legitimate and not expired.
+
+```javascript
+        asyncHandler(async (err, decoded) => {
+```
+`asyncHandler` is likely a custom middleware that wraps the asynchronous function to handle errors. Inside this callback, two parameters are available: `err` (any error that occurred during verification) and `decoded` (the payload of the token if it’s valid).
+
+```javascript
+            if (err) return res.status(403).json({ message: 'Forbidden' })
+```
+If there was an error during verification (e.g., the token is invalid or expired), a 403 Forbidden response is sent back to the client.
+
+```javascript
+            const foundUser = await User.findOne({ username: decoded.username }).exec()
+```
+This line attempts to find a user in the database using the username extracted from the decoded token. The `exec()` method is called to execute the query asynchronously.
+
+```javascript
+            if (!foundUser) return res.status(401).json({ message: 'Unauthorized' })
+```
+If no user is found (meaning the token is valid, but the user doesn’t exist), a 401 Unauthorized response is sent back.
+
+```javascript
+            const accessToken = jwt.sign(
+                {
+                    "UserInfo": {
+                        "username": foundUser.username,
+                        "roles": foundUser.roles
+                    }
+                },
+                process.env.ACCESS_TOKEN_SECRET,
+                { expiresIn: '2m' }
+            )
+```
+This part creates a new access token using `jwt.sign()`. The payload includes the user's username and roles, and it is signed with the `ACCESS_TOKEN_SECRET` from environment variables. The token is set to expire in 2 minutes.
+
+```javascript
+            res.json({ accessToken })
+```
+Finally, if everything goes well, the new access token is sent back to the client as a JSON response.
+
+Overall, this function checks the validity of a refresh token, retrieves the associated user, and generates a new access token for that user if everything is valid.
+
+
+
+`res.cookie` is used to set a cookie on the client-side (i.e., the user's browser). When you call `res.cookie`, the server sends a `Set-Cookie` header in the response to the client, which instructs the client to store the cookie. The cookie is not stored on the server. Instead, the client stores the cookie locally and sends it back to the server in subsequent requests.
