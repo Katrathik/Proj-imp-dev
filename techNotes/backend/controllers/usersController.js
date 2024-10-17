@@ -42,7 +42,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     }
 
     // check for duplicate
-    const duplicate = await User.findOne({username}).lean().exec()
+    const duplicate = await User.findOne({username}).collation({locale:'en',strength:2}).lean().exec()
 
     if(duplicate){
         // 409 conflict
@@ -87,7 +87,7 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     // check for duplicate
-    const duplicate = await User.findOne({username}).lean().exec()
+    const duplicate = await User.findOne({username}).collation({locale:'en',strength:2}).lean().exec()
 
     // Allow updates to the original user
     // below line means that u cannot take an aldready existing name for an update
