@@ -1,18 +1,24 @@
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectUserById } from './usersApiSlice'
 import EditUsersForm from './EditUsersForm'
+import { useGetUsersQuery } from './usersApiSlice'
+
+import useTitle from '../../hooks/useTitle'
 
 const EditUser = () => {
+    useTitle('techNotes: Edit User')
+
     const { id } = useParams()
 
-    // pull dayta from state by selecting user by id destructured above from params
-    const user = useSelector(state => selectUserById(state, id))
+    const { user } = useGetUsersQuery("usersList", {
+        selectFromResult: ({ data }) => ({
+            user: data?.entities[id]
+        }),
+    })
 
-    // if user is not there, show loading, else show edit user form
-    // reason we check for user is, we will show the prev form entries to user for editing fileds of their requirement
-    const content = user ? <EditUsersForm user={user} /> : <p>Loading...</p>
-    
+    if (!user) return <p>Not Found!</p>
+
+    const content = <EditUsersForm user={user} />
+
     return content
 }
 export default EditUser
