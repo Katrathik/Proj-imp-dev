@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
 
-// as new data is put, and it doesn't require existing data, tis route will not be protected
-// but we cannot create a new user until we are authorized via jwt
+
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -14,9 +13,6 @@ const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 const NewUserForm = () => {
 
   // destructure from useAddNewUserMutation as in useGetUsersQuery
-  // this unlike query, gives us the addNewUser function which gets activated on calling
-  // query was called immediatley when we use it in our list components
-  // but this will not be called until we r ready to call it
   const [addNewUser, {
     isLoading,
     isSuccess,
