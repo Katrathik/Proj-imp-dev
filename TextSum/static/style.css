@@ -1,0 +1,81 @@
+/* Applying the Poppins font family globally */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('scenery.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: blue; /* Blue background color */
+}
+
+.jumbotron {
+    background: rgba(0, 0, 0, 0.7); /* Black with some transparency */
+    color: white;
+    padding: 20px;
+}
+
+.original_title, .summary_title {
+    background-color: transparent; /* Making it transparent for glass effect */
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+/* Glass morphism effect for the original and summarized text containers */
+.srt {
+    display: flex;
+    flex-direction: row;
+    backdrop-filter: blur(10px); /* Blurs the background behind the containers */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.originalTxt, .summaryTxt {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white for the glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    color: black; /* Changing font color to black for contrast */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.summaryTxt {
+    margin-left: 10px;
+}
+
+.heading, .lead {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.submitbtn {
+    margin-top: 10px;
+    background-color: #fff;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submitbtn:hover {
+    background-color: #f1f1f1;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: black;
+}
